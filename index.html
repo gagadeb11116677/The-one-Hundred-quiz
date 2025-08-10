@@ -1,40 +1,265 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The One Hundred Quiz – Xobe Development</title>
-  <link rel="stylesheet" href="style.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Xobe Code Editor - 10 Slots</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        header {
+            background: rgba(0,0,0,0.4);
+            padding: 10px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        header h1 {
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            animation: glow 2s infinite alternate;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #fff, 0 0 20px #00e5ff; }
+            to { text-shadow: 0 0 20px #fff, 0 0 30px #00e5ff, 0 0 40px #00e5ff; }
+        }
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            padding: 10px;
+        }
+        .editor-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .editor {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 10px;
+            backdrop-filter: blur(5px);
+        }
+        .editor h3 {
+            margin-bottom: 5px;
+            font-size: 1rem;
+            color: #00e5ff;
+        }
+        textarea {
+            flex: 1;
+            background: rgba(0,0,0,0.5);
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            padding: 10px;
+            font-family: 'Courier New', Courier, monospace;
+            resize: none;
+            outline: none;
+            transition: box-shadow 0.3s;
+        }
+        textarea:focus { box-shadow: 0 0 10px #00e5ff; }
+        .preview-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 10px;
+            backdrop-filter: blur(5px);
+        }
+        .preview-container h3 {
+            margin-bottom: 5px;
+            font-size: 1rem;
+            color: #00e5ff;
+        }
+        iframe {
+            flex: 1;
+            border: none;
+            border-radius: 5px;
+            background: #fff;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 10px;
+        }
+        button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            background: #00e5ff;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px #00e5ff;
+        }
+        .slots {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 10px;
+        }
+        .slot-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid #00e5ff;
+        }
+        .slot-btn.active {
+            background: #00e5ff;
+            color: #000;
+        }
+        footer {
+            background: rgba(0,0,0,0.4);
+            padding: 5px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #ccc;
+            backdrop-filter: blur(10px);
+        }
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+        }
+    </style>
 </head>
 <body>
-  <main class="container">
     <header>
-      <h1>The One Hundred Quiz</h1>
-      <p>100 soal • Benar <strong>+0,5 IQ</strong> • Salah <strong>–0,2 IQ</strong></p>
-      <div id="iq-bar">
-        <span>IQ: <strong id="iq-value">100</strong></span>
-        <div id="iq-progress"><div id="iq-fill"></div></div>
-      </div>
+        <h1>Xobe Code Editor - 10 Slots</h1>
     </header>
 
-    <section id="quiz-box">
-      <div id="question-counter">Soal <span id="current">1</span>/100</div>
-      <h2 id="question-text">Memuat soal...</h2>
-      <div id="options"></div>
-      <button id="next-btn" class="hidden" disabled>Selanjutnya</button>
-    </section>
+    <div class="slots">
+        <!-- 10 slot buttons -->
+        <button class="slot-btn active" data-slot="1">Slot 1</button>
+        <button class="slot-btn" data-slot="2">Slot 2</button>
+        <button class="slot-btn" data-slot="3">Slot 3</button>
+        <button class="slot-btn" data-slot="4">Slot 4</button>
+        <button class="slot-btn" data-slot="5">Slot 5</button>
+        <button class="slot-btn" data-slot="6">Slot 6</button>
+        <button class="slot-btn" data-slot="7">Slot 7</button>
+        <button class="slot-btn" data-slot="8">Slot 8</button>
+        <button class="slot-btn" data-slot="9">Slot 9</button>
+        <button class="slot-btn" data-slot="10">Slot 10</button>
+    </div>
 
-    <section id="result-box" class="hidden">
-      <h2>Selesai!</h2>
-      <p id="final-iq">IQ Akhir: <strong>100</strong></p>
-      <button onclick="location.reload()">Ulangi</button>
-    </section>
+    <div class="container">
+        <div class="editor-container">
+            <div class="editor">
+                <h3>HTML</h3>
+                <textarea id="htmlCode" placeholder="Ketik kode HTML..."></textarea>
+            </div>
+            <div class="editor">
+                <h3>CSS</h3>
+                <textarea id="cssCode" placeholder="Ketik kode CSS..."></textarea>
+            </div>
+            <div class="editor">
+                <h3>JavaScript</h3>
+                <textarea id="jsCode" placeholder="Ketik kode JavaScript..."></textarea>
+            </div>
+        </div>
+
+        <div class="preview-container">
+            <h3>Live Preview</h3>
+            <iframe id="preview"></iframe>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <button onclick="saveCode()">💾 Simpan</button>
+        <button onclick="loadCode()">📂 Muat</button>
+        <button onclick="clearCode()">🗑️ Bersihkan</button>
+    </div>
 
     <footer>
-      Ide oleh <strong>Creammm</strong> • Kode oleh <strong>Xobe Development</strong>
+        &copy; 2025 Xobe Development & Creammm - All rights reserved.
     </footer>
-  </main>
 
-  <script type="module" src="script.js"></script>
+    <script>
+        const htmlCode = document.getElementById('htmlCode');
+        const cssCode = document.getElementById('cssCode');
+        const jsCode = document.getElementById('jsCode');
+        const preview = document.getElementById('preview').contentWindow.document;
+        const slotBtns = document.querySelectorAll('.slot-btn');
+
+        let currentSlot = 1;
+
+        // Switch slot
+        slotBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                slotBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentSlot = btn.dataset.slot;
+                loadCode();
+            });
+        });
+
+        function runCode() {
+            preview.open();
+            preview.writeln(`
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1">
+                    <style>${cssCode.value}</style>
+                </head>
+                <body>
+                    ${htmlCode.value}
+                    <script>${jsCode.value}<\/script>
+                </body>
+                </html>
+            `);
+            preview.close();
+        }
+
+        // Real-time preview
+        [htmlCode, cssCode, jsCode].forEach(el => {
+            el.addEventListener('input', runCode);
+        });
+
+        // Save to localStorage
+        function saveCode() {
+            localStorage.setItem(`xobe-html-${currentSlot}`, htmlCode.value);
+            localStorage.setItem(`xobe-css-${currentSlot}`, cssCode.value);
+            localStorage.setItem(`xobe-js-${currentSlot}`, jsCode.value);
+            alert(`Kode disimpan di Slot ${currentSlot}`);
+        }
+
+        // Load from localStorage
+        function loadCode() {
+            htmlCode.value = localStorage.getItem(`xobe-html-${currentSlot}`) || '';
+            cssCode.value = localStorage.getItem(`xobe-css-${currentSlot}`) || '';
+            jsCode.value = localStorage.getItem(`xobe-js-${currentSlot}`) || '';
+            runCode();
+        }
+
+        // Clear all
+        function clearCode() {
+            if (confirm(`Yakin ingin menghapus semua kode di Slot ${currentSlot}?`)) {
+                htmlCode.value = '';
+                cssCode.value = '';
+                jsCode.value = '';
+                runCode();
+            }
+        }
+
+        // Load on start
+        loadCode();
+    </script>
 </body>
 </html>
