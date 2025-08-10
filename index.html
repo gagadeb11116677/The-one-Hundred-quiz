@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>The One Hundred Quiz – Xobe Development</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>The One Hundred Quiz</h1>
+            <p>100 soal • Setiap benar <strong>+0,5 IQ</strong> • Salah <strong>–0,2 IQ</strong></p>
+            <div id="iq-bar">
+                <span>IQ: <strong id="iq-value">100</strong></span>
+                <div id="iq-progress">
+                    <div id="iq-fill"></div>
+                </div>
+            </div>
+        </header>
+
+        <section id="quiz-box">
+            <div id="question-counter">Soal <span id="current">1</span>/100</div>
+            <h2 id="question-text">Loading…</h2>
+            <div id="options"></div>
+            <button id="next-btn" class="hidden" disabled>Selanjutnya</button>
+        </section>
+
+        <section id="result-box" class="hidden">
+            <h2>Selesai!</h2>
+            <p id="final-iq">IQ Akhir: <strong>100</strong></p>
+            <button onclick="location.reload()">Ulangi</button>
+        </section>
+
+        <footer>
+            <p>
+                Ide oleh <strong>Creammm</strong> • Kode oleh
+                <strong>Xobe Development</strong>
+            </p>
+        </footer>
+    </main>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
