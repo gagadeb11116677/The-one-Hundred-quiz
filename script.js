@@ -3,19 +3,22 @@ let currentIndex = 0;
 let iq = 100;
 let selected = null;
 
-const questionText   = document.getElementById("question-text");
-const optionsDiv     = document.getElementById("options");
-const nextBtn        = document.getElementById("next-btn");
-const currentEl      = document.getElementById("current");
-const iqValueEl      = document.getElementById("iq-value");
-const iqFill         = document.getElementById("iq-fill");
-const quizBox        = document.getElementById("quiz-box");
-const resultBox      = document.getElementById("result-box");
-const finalIqEl      = document.getElementById("final-iq");
+const questionText = document.getElementById("question-text");
+const optionsDiv = document.getElementById("options");
+const nextBtn = document.getElementById("next-btn");
+const currentEl = document.getElementById("current");
+const iqValueEl = document.getElementById("iq-value");
+const iqFill = document.getElementById("iq-fill");
+const quizBox = document.getElementById("quiz-box");
+const resultBox = document.getElementById("result-box");
+const finalIqEl = document.getElementById("final-iq");
 
 async function loadQuestions() {
   try {
     const res = await fetch("questions.json");
+    if (!res.ok) {
+      throw new Error("Failed to load questions");
+    }
     questions = await res.json();
     if (questions.length !== 100) {
       alert("Pastikan questions.json berisi tepat 100 soal!");
@@ -23,6 +26,7 @@ async function loadQuestions() {
     }
     renderQuestion();
   } catch (err) {
+    console.error("Error loading questions:", err);
     questionText.textContent = "Gagal memuat soal. Pastikan questions.json valid.";
   }
 }
@@ -47,7 +51,7 @@ function renderQuestion() {
 function handleAnswer(e) {
   if (selected !== null) return;
   selected = +e.target.dataset.index;
-  const correct = questions[currentIndex].answer;
+  const correct = questions[currentIndex].answer - 1; // Kurangi 1 karena indeks jawaban dimulai dari 0
   if (selected === correct) {
     iq += 0.5;
     e.target.classList.add("correct");
