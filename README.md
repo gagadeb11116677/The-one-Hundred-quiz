@@ -1,82 +1,75 @@
-# 🎯 The One Hundred Quiz — v1.0
+# 🖥️ Code Online Editor — by XOBE
 
-[![Version](https://img.shields.io/badge/version-1.0-blue)](https://github.com/gagadeb11116677/The-one-Hundred-quiz)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Open Source](https://img.shields.io/badge/open--source-yes-green.svg)](https://github.com/gagadeb11116677/The-one-Hundred-quiz)
+[![Version](https://img.shields.io/badge/version-0.1-blue)]()
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]()
 
-**The One Hundred Quiz** adalah game kuis ringan dan menghibur yang dibuat dengan *plain* **HTML, CSS, dan JavaScript**. Mudah dijalankan (cukup buka `index.html`) dan cocok untuk dimainkan sendiri atau bersama teman.
+**Code Online Editor** adalah editor berbasis web ringan yang dibuat oleh **XOBE** untuk menulis dan melihat hasil **HTML, CSS, dan JavaScript** secara langsung di browser. Project ini bersifat **open source**.
 
----
-
-## 📖 Ringkasan
-
-* **Stack:** HTML • CSS • JavaScript (no backend)
-* **Repo:** `https://github.com/gagadeb11116677/The-one-Hundred-quiz.git`
-* **Versi:** `1.0` (Open Source)
-* **Lisensi:** MIT
+**Versi:** `0.1` • **Open Source** • **License:** MIT
 
 ---
 
-## ✨ Fitur Utama
+## 🔎 Deskripsi singkat
+Editor ini dirancang untuk prototyping cepat, belajar front-end, dan demo kecil. Semua proses berjalan di sisi klien — tidak memerlukan server. Cukup buka `index.html` lalu mulai mengetik dan melihat preview secara real-time.
 
-* 🧠 100 pertanyaan beragam (multiple choice)
-* ⚡ UI responsif dan ringan (HTML/CSS/JS)
-* 🔄 Bisa dimainkan ulang, skor tersimpan sementara di sesi
-* 🎯 Gameplay sederhana — cocok untuk semua usia
+---
+
+## ✨ Fitur utama
+- 🧩 Panel editor untuk **HTML**, **CSS**, dan **JS**
+- 🔁 **Live preview** real-time (preview otomatis saat mengetik)
+- 💾 Simpan & muat kode (localStorage)
+- 📂 Struktur file sederhana (index.html + assets)
+- ⚡ Ringan, tanpa dependensi backend — jalankan langsung di browser
 
 ---
 
 ## 🚀 Quick Start
-
 1. Clone repository:
-
    ```bash
    git clone https://github.com/gagadeb11116677/The-one-Hundred-quiz.git
    cd The-one-Hundred-quiz
-   ```
-2. Buka file `index.html` di browser favoritmu (double-click atau `Open with...`).
+Buka index.html di browser (double-click atau Open With...).
 
-> Tidak perlu server atau instalasi tambahan — project berjalan langsung di browser.
+Untuk publikasi cepat: dorong repo ke GitHub dan aktifkan GitHub Pages atau host file statis di layanan apa pun.
 
----
+🧭 Cara pakai singkat
+Buka tab HTML, CSS, atau JS di editor.
 
-## 🛠 Struktur Project (ringkas)
+Ketik atau tempel kode.
 
-```
+Lihat hasil di panel preview secara real-time.
+
+Gunakan tombol Save untuk menyimpan kerja ke browser (localStorage) dan Load untuk memuat kembali.
+
+⚠️ Catatan Keamanan
+Semua data disimpan secara lokal di browser (localStorage). Jangan menyimpan data sensitif pada editor publik.
+
+Project ini tidak menyediakan enkripsi penyimpanan.
+
+📁 Struktur proyek (contoh)
+arduino
+Salin
+Edit
 The-one-Hundred-quiz/
-├─ index.html        # entry point
+├─ index.html        # entry point: editor + preview
 ├─ assets/
-│  ├─ css/           # file stylesheet
-│  └─ js/            # file JavaScript
+│  ├─ css/
+│  └─ js/
 └─ data/
-   └─ questions.json # (jika ada) daftar pertanyaan
-```
+   └─ (optional: contoh file)
+🤝 Kontribusi
+Kontribusi welcome!
 
----
+Laporkan bug lewat Issues.
 
-## 🧩 Cara Bermain
+Kirim PR untuk perbaikan fitur atau UX.
 
-1. Buka `index.html` di browser.
-2. Pilih jawaban yang menurutmu benar untuk setiap soal.
-3. Lihat skor di akhir permainan.
+Sertakan deskripsi perubahan dan cara tes pada PR.
 
----
+📝 Lisensi
+Project ini dirilis di bawah MIT License. Lihat file LICENSE untuk detail lengkap.
 
-## 🤝 Kredit
+🏷️ Kredit
+Dibuat oleh XOBE DEVELOPMENT AND CREAMMM
 
-Dibuat oleh:
-
-* **XOBE Development**
-* **Creammm**
-
-Terima kasih kepada semua kontributor dan penguji.
-
----
-
-## 📜 Lisensi
-
-Project ini dirilis sebagai **Open Source — MIT License**. Lihat file `LICENSE` untuk detail.
-
----
-
-*Dibuat dengan ❤️ dan sedikit keceriaan — enjoy the quiz!*
+Dibuat dengan ❤️ — nikmati eksperimenmu dengan HTML/CSS/JS!
