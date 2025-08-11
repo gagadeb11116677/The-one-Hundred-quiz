@@ -1,0 +1,21 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Logs and local DB
+*.log
+*.sqlite3
+
+# Environment / secrets
+.env
+*.secret
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
